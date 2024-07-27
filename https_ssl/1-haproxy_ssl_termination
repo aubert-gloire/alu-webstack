@@ -33,19 +33,19 @@ defaults
     errorfile 503 /etc/haproxy/errors/503.http
     errorfile 504 /etc/haproxy/errors/504.http
 
-frontend webkalisa-frontend
+frontend bihibindi-frontend
     bind *:80
     mode http
     http-request redirect scheme https code 301 unless { ssl_fc }
     http-request set-header X_Forwarded-Proto http
-    default_backend webkalisa-backend
+    default_backend bihibindi-backend
 
-frontend webkalisa-frontend-https
-    bind *:443 ssl crt /etc/haproxy/certs/www.webkalisa.tech.pem
+frontend bihibindi-frontend-https
+    bind *:443 ssl crt /etc/haproxy/certs/www.bihibindi.tech.pem
     http-request set-header X-Forwarded-Proto https
-    default_backend webkalisa-backend
+    default_backend bihibindi-backend
 
-backend webkalisa-backend
+backend bihibindi-backend
     balance roundrobin
-    server 6062-web-01 18.206.236.38:80 check
-    server 6062-web-02 3.80.74.31:80 check
+    server 6146-web-01 34.229.18.143:80 check
+    server 6146-web-02 34.224.56.246:80 check
